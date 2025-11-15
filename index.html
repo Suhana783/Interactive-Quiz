@@ -6,20 +6,32 @@
     <title>Interactive-Quiz</title>
 </head>
 <body>
-    
-    </div>
-    </div>
-    
-    <button id="next-button" class="next-button" disabled>Next Question</button>
 
-    <div id="result-screen" class="result-screen hidden">
-        <h2 id="result-title"></h2>
-        <p id="final-score"></p>
-        <p id="score-message"></p>
-        <button id="restart-button" class="next-button">Restart Quiz</button>
-    </div>
+    <div class="quiz-container" id="quiz-container">
 
+        <div id="progress-dots" class="progress-dots"></div>
+        <p id="progress-text" class="progress-text">Question Loading...</p>
+         
+        <div id="quiz-content">
+           
+           <h2 id="question-text">Question Loading...</h2> 
+           
+           <div id="options-container" class="options-container">
+               </div>
+
+        </div>
+        
+        <button id="next-button" class="next-button" disabled>Next Question</button>
+
+        <div id="result-screen" class="result-screen hidden">
+            <h2 id="result-title"></h2>
+            <p id="final-score"></p>
+            <p id="score-message"></p>
+            <button id="restart-button" class="next-button">Restart Quiz</button>
+        </div>
+
+    </div>
+    
     <script src="script.js"></script>
 </body>
-
 </html>
