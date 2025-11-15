@@ -1,0 +1,140 @@
+:root {
+    --primary-color: #3f51b5; /* Indigo */
+    --accent-color: #ff9800; /* Orange */
+    --success-color: #4caf50; /* Green */
+    --failure-color: #f44336; /* Red */
+    --text-color: #333;
+    --bg-light: #fff;
+    --bg-dark: #673ab7; /* Deep Purple */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, var(--bg-dark), #9c27b0);
+    color: var(--text-color);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.quiz-container {
+    background-color: var(--bg-light);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+}
+
+/* Progress Dots */
+.progress-dots {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.dot {
+    height: 8px;
+    width: 8px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 4px;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: var(--primary-color);
+}
+
+.dot.completed {
+    background-color: var(--success-color);
+}
+
+/* Options Styling */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.option {
+    background-color: #f5f5f5;
+    color: var(--text-color);
+    border: 1px solid #ddd;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.option:hover:not(.disabled) {
+    background-color: #e0e0e0;
+}
+
+/* Feedback Styles (Mastery Loop) */
+.option.incorrect {
+    background-color: #fde8e8; /* Light Red */
+    border-color: var(--failure-color);
+    color: var(--failure-color);
+    pointer-events: none; /* Disables the option */
+    cursor: not-allowed;
+}
+
+.option.correct {
+    background-color: #e8f5e9; /* Light Green */
+    border-color: var(--success-color);
+    color: var(--success-color);
+    pointer-events: none; /* Disables all options on correct answer */
+    cursor: default;
+}
+
+/* Button Styling */
+.next-button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.next-button:hover:not(:disabled) {
+    background-color: #303f9f;
+}
+
+.next-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Final Screen Styling */
+.result-screen {
+    text-align: center;
+    padding: 20px;
+}
+
+.result-screen h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.result-screen p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+}
+
+.hidden {
+    display: none;
+}
