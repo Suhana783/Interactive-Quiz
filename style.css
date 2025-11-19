@@ -1,11 +1,15 @@
 :root {
-    --primary-color: #3f51b5; /* Indigo */
-    --accent-color: #ff9800; /* Orange */
-    --success-color: #4caf50; /* Green */
-    --failure-color: #f44336; /* Red */
+    --primary-color: #3f51b5;
+    --accent-color: #ff9800;
+    --success-color: #4caf50;
+    --failure-color: #f44336;
     --text-color: #333;
     --bg-light: #fff;
-    --bg-dark: #673ab7; /* Deep Purple */
+    --bg-dark: #673ab7;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
@@ -13,6 +17,7 @@ body {
     background: linear-gradient(135deg, var(--bg-dark), #9c27b0);
     color: var(--text-color);
     margin: 0;
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,18 +26,19 @@ body {
 
 .quiz-container {
     background-color: var(--bg-light);
-    padding: 30px;
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    width: 90%;
+    width: 100%;
     max-width: 500px;
+    min-width: 280px;
 }
 
-/* Progress Dots */
 .progress-dots {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .dot {
@@ -40,8 +46,9 @@ body {
     width: 8px;
     background-color: #ccc;
     border-radius: 50%;
-    margin: 0 4px;
+    margin: 2px 4px;
     transition: background-color 0.3s;
+    flex-shrink: 0;
 }
 
 .dot.active {
@@ -52,7 +59,20 @@ body {
     background-color: var(--success-color);
 }
 
-/* Options Styling */
+.progress-text {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+#question-text {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    line-height: 1.4;
+    margin-bottom: 15px;
+    word-wrap: break-word;
+}
+
 .options-container {
     display: flex;
     flex-direction: column;
@@ -64,7 +84,7 @@ body {
     background-color: #f5f5f5;
     color: var(--text-color);
     border: 1px solid #ddd;
-    padding: 15px 20px;
+    padding: 12px 15px;
     border-radius: 8px;
     text-align: left;
     cursor: pointer;
@@ -72,30 +92,31 @@ body {
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    word-wrap: break-word;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.3;
 }
 
 .option:hover:not(.disabled) {
     background-color: #e0e0e0;
 }
 
-/* Feedback Styles (Mastery Loop) */
 .option.incorrect {
-    background-color: #fde8e8; /* Light Red */
+    background-color: #fde8e8;
     border-color: var(--failure-color);
     color: var(--failure-color);
-    pointer-events: none; /* Disables the option */
+    pointer-events: none;
     cursor: not-allowed;
 }
 
 .option.correct {
-    background-color: #e8f5e9; /* Light Green */
+    background-color: #e8f5e9;
     border-color: var(--success-color);
     color: var(--success-color);
-    pointer-events: none; /* Disables all options on correct answer */
+    pointer-events: none;
     cursor: default;
 }
 
-/* Button Styling */
 .next-button {
     width: 100%;
     padding: 12px;
@@ -104,10 +125,11 @@ body {
     border-radius: 8px;
     background-color: var(--primary-color);
     color: white;
-    font-size: 16px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s;
+    min-height: 45px;
 }
 
 .next-button:hover:not(:disabled) {
@@ -119,7 +141,6 @@ body {
     cursor: not-allowed;
 }
 
-/* Final Screen Styling */
 .result-screen {
     text-align: center;
     padding: 20px;
@@ -128,13 +149,96 @@ body {
 .result-screen h2 {
     color: var(--primary-color);
     margin-bottom: 10px;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
 }
 
 .result-screen p {
-    font-size: 1.1em;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     margin-bottom: 25px;
+    line-height: 1.4;
 }
 
 .hidden {
     display: none;
+}
+
+/* Mobile devices (up to 480px) */
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .quiz-container {
+        padding: 15px;
+        margin: 5px;
+    }
+    
+    .option {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .next-button {
+        padding: 10px;
+        font-size: 14px;
+        min-height: 40px;
+    }
+    
+    .dot {
+        height: 6px;
+        width: 6px;
+        margin: 1px 2px;
+    }
+    
+    .progress-text {
+        font-size: 12px;
+    }
+}
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .quiz-container {
+        padding: 25px;
+    }
+    
+    .option {
+        padding: 13px 16px;
+    }
+}
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .quiz-container {
+        padding: 30px;
+        max-width: 600px;
+    }
+}
+
+
+@media (min-width: 1025px) {
+    .quiz-container {
+        padding: 35px;
+        max-width: 650px;
+    }
+    
+    .option {
+        padding: 16px 20px;
+    }
+}
+
+
+@media (max-height: 600px) and (orientation: landscape) {
+    body {
+        align-items: flex-start;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    
+    .quiz-container {
+        margin: 10px 0;
+    }
+    
+    .progress-dots {
+        margin-bottom: 10px;
+    }
 }
